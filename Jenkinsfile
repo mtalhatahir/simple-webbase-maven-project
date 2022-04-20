@@ -1,7 +1,7 @@
 pipeline{
     agent any
     tools {
-        maven 'maven-jenkins'
+        maven 'mavenjenkins'
     }
     stages{
         stage('git-pull'){
