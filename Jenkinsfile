@@ -23,7 +23,9 @@ pipeline{
         }
         stage('run-app'){
             steps{
-                sh '''ssh -tt -o StrictHostKeyChecking=no admin1@192.168.117.128 "cd Deployments/Maven/java -jar vertx-start-project-1.0-SNAPSHOT-fat.jar" '''
+                sshagent(['admin1']) {
+                    sh '''ssh -tt -o StrictHostKeyChecking=no admin1@192.168.117.128 "cd Deployments/Maven/; java -jar vertx-start-project-1.0-SNAPSHOT-fat.jar" '''
+                }
             }
         }
     }
