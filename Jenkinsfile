@@ -11,14 +11,13 @@ pipeline{
         }
         stage('Build'){
             steps{
-                sh 'ls -al'
                 sh 'mvn clean package'
             }
         }
         stage('Deploy'){
             steps{
                 sshagent(['admin1']) {
-                    sh 'scp -p 22 target/vertx-start-project-1.0-SNAPSHOT-fat.jar admin1@192.168.117.128:Deployments/Maven/'
+                    sh 'scp target/vertx-start-project-1.0-SNAPSHOT-fat.jar admin1@192.168.117.128:Deployments/Maven/'
                 }
             }
         }
